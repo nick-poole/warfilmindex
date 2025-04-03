@@ -58,11 +58,10 @@ npm run dev
 ## Progress Log
 
 **04/02/2025**
+- Set up MongoDB Atlas cluster with free-tier hosting
+- Installed Mongoose and connected backend to cloud database
+- Cleaned up deprecated connection options for modern MongoDB driver
+
 - Installed Express and Axios
 - Successfully fetched data from OMDb API using test script
 - Initialized backend project structure
-
-
-
-
-
