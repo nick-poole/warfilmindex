@@ -57,6 +57,12 @@ npm run dev
 ---
 ## Progress Log
 
+**April 3, 2025**
+- Created first Mongoose schema (`Movie`) to structure film metadata and custom commentary fields
+- Wrote standalone script to fetch movie data from OMDb and insert into MongoDB Atlas
+- Successfully inserted first film (`1917`) into the database, confirming full backend data flow
+
+
 **04/02/2025**
 - Set up MongoDB Atlas cluster with free-tier hosting
 - Installed Mongoose and connected backend to cloud database
