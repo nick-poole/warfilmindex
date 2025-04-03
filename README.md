@@ -53,3 +53,16 @@ node server.js
 cd ../frontend
 npm install
 npm run dev
+
+---
+## Progress Log
+
+**04/02/2025**
+- Installed Express and Axios
+- Successfully fetched data from OMDb API using test script
+- Initialized backend project structure
+
+
+
+
+
