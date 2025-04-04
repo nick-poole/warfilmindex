@@ -1,20 +1,15 @@
 const axios = require('axios');
-//for connecting to DB and inserting data
 const mongoose = require('mongoose');
-//loads .env to get API key
 require('dotenv').config();
 
-//for creating new entries in the DB
-const Movie = require('./models/Movie');
+const IndexEntry = require('./models/IndexEntry');
 
-//connects to cluster0 using secret key
 mongoose
 	.connect(process.env.MONGODB_URI)
 	.then(() => console.log('✅ Connected to MongoDB'))
 	.catch((err) => console.error('❌ MongoDB connection error:', err));
 
-//
-const fetchAndSaveMovie = async (title) => {
+const fetchAndSeedIndex = async (title) => {
 	try {
 		const apiKey = process.env.OMDB_API_KEY;
 		const url = `http://www.omdbapi.com/?t=${title}&apikey=${apiKey}`;
@@ -27,7 +22,7 @@ const fetchAndSaveMovie = async (title) => {
 			return;
 		}
 
-		const newMovie = new Movie({
+		const newEntry = new IndexEntry({
 			title: data.Title,
 			year: data.Year,
 			rated: data.Rated,
@@ -43,19 +38,20 @@ const fetchAndSaveMovie = async (title) => {
 			poster: data.Poster,
 			imdbID: data.imdbID,
 
-			// Custom fields
+			// Curated fields
 			conflict: 'WWII',
 			commentary: 'A stunning visual take on trench warfare and the loneliness of duty.',
 			tags: ['trench warfare', 'WWI', 'long take'],
 		});
 
-		const savedMovie = await newMovie.save();
-		console.log('✅ Movie saved:', savedMovie.title);
+		const savedEntry = await newEntry.save();
+		console.log('✅ Entry saved to index:', savedEntry.title);
 	} catch (error) {
-		console.error('❌ Error saving movie:', error.message);
+		console.error('❌ Error saving entry to index:', error.message);
 	} finally {
 		mongoose.disconnect();
 	}
 };
 
-fetchAndSaveMovie('1917');
+// Example seed call
+fetchAndSeedIndex('1917');

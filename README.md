@@ -58,6 +58,14 @@ npm run dev
 ## Progress Log
 
 **April 3, 2025**
+# feat: connected /film route to serve indexed war films via MongoDB
+- Swapped from generic `Movie` model to custom `IndexEntry` schema
+- Created `/film` route to serve curated entries from MongoDB
+- Configured `server.js` to handle new route
+- Seeded database with custom tags and commentary using `seedIndex.js`
+- Connected MongoDB Compass for visual inspection and editing
+
+# Added fetchAndSaveMovie script to pull OMDb data and insert into MongoDB
 - Created first Mongoose schema (`Movie`) to structure film metadata and custom commentary fields
 - Wrote standalone script to fetch movie data from OMDb and insert into MongoDB Atlas
 - Successfully inserted first film (`1917`) into the database, confirming full backend data flow

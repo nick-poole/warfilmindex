@@ -1,8 +1,8 @@
 // Import Mongoose library for defining MongoDB schemas and models
 const mongoose = require('mongoose');
 
-// Define the schema for a Movie document in the database
-const movieSchema = new mongoose.Schema(
+// Define the schema for an indexed war film in the archive
+const indexSchema = new mongoose.Schema(
 	{
 		// Core metadata
 		title: { type: String, required: true },
@@ -24,15 +24,15 @@ const movieSchema = new mongoose.Schema(
 		poster: String,
 		imdbID: { type: String, unique: true },
 
-		// Custom fields
-		conflict: String, // i.e., "WWII", "Vietnam", etc.
-		commentary: String,
-		tags: [String],
+		// Curated by WFI
+		conflict: String, // e.g., "WWII", "Vietnam", etc.
+		commentary: String, // Your personal/educational analysis
+		tags: [String], // Thematic or contextual tags
 	},
 	{
-		timestamps: true,
+		timestamps: true, // Adds createdAt and updatedAt fields
 	}
 );
 
-// Export the Movie model based on the schema
-module.exports = mongoose.model('Movie', movieSchema);
+// Export the IndexEntry model for use in the archive backend
+module.exports = mongoose.model('IndexEntry', indexSchema);
