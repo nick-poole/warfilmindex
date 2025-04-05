@@ -1,38 +1,53 @@
-// Import Mongoose library for defining MongoDB schemas and models
 const mongoose = require('mongoose');
 
-// Define the schema for an indexed war film in the archive
-const indexSchema = new mongoose.Schema(
+const indexEntrySchema = new mongoose.Schema(
 	{
-		// Core metadata
+		// Core Metadata
 		title: { type: String, required: true },
 		year: String,
 		rated: String,
+		runtime: String,
+		genre: [String],
+		language: String,
+		country: String,
+		type: String, // "film" | "miniseries" | "tv" | "documentary" | "short"
+		episodes: Number, // Optional, for miniseries or shows
 
-		// Creative credits
+		// Credits
 		director: String,
 		writer: String,
 		actors: String,
 
-		// Description and classification
-		genre: [String],
+		// Description & Commentary
 		plot: String,
-		language: String,
-		country: String,
+		commentary: String, // Displayed as "Index Insight" on frontend
+		featured: Boolean,
+		seen: Boolean,
 
-		// Visual & external identifiers
+		// Conflict
+		conflict: String, // e.g., "WWII"
+		conflictSlug: String, // e.g., "wwii"
+
+		// Tags & Fidelity
+		tags: [String],
+		historicalFidelity: String, // e.g., "high", "symbolic", "fictionalized"
+		fidelityNotes: String,
+		basedOnTrueStory: Boolean,
+
+		// External Links
+		externalLinks: {
+			imdb: String,
+			wikipedia: String,
+			contextLinks: [String],
+			trailer: String,
+		},
+
+		// Visual
 		poster: String,
-		imdbID: { type: String, unique: true },
-
-		// Curated by WFI
-		conflict: String, // e.g., "WWII", "Vietnam", etc.
-		commentary: String, // Your personal/educational analysis
-		tags: [String], // Thematic or contextual tags
 	},
 	{
-		timestamps: true, // Adds createdAt and updatedAt fields
+		timestamps: true,
 	}
 );
 
-// Export the IndexEntry model for use in the archive backend
-module.exports = mongoose.model('IndexEntry', indexSchema);
+module.exports = mongoose.model('IndexEntry', indexEntrySchema);

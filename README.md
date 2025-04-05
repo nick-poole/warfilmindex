@@ -57,6 +57,12 @@ npm run dev
 ---
 ## Progress Log
 
+**April 4, 2025 **
+- Connected MongoDB Atlas via Mongoose
+- Finalized and implemented film schema (`IndexEntry`)
+- Created `seedIndex.js` script for automated OMDb film import
+- Seeded first full entry into index: *1917 (2019)*
+
 **April 3, 2025**
 # feat: connected /film route to serve indexed war films via MongoDB
 - Swapped from generic `Movie` model to custom `IndexEntry` schema

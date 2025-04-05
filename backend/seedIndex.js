@@ -4,15 +4,17 @@ require('dotenv').config();
 
 const IndexEntry = require('./models/IndexEntry');
 
+// Connect to MongoDB
 mongoose
 	.connect(process.env.MONGODB_URI)
 	.then(() => console.log('✅ Connected to MongoDB'))
 	.catch((err) => console.error('❌ MongoDB connection error:', err));
 
+// Fetch data from OMDb and save to MongoDB
 const fetchAndSeedIndex = async (title) => {
 	try {
 		const apiKey = process.env.OMDB_API_KEY;
-		const url = `http://www.omdbapi.com/?t=${title}&apikey=${apiKey}`;
+		const url = `http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`;
 
 		const response = await axios.get(url);
 		const data = response.data;
@@ -23,10 +25,10 @@ const fetchAndSeedIndex = async (title) => {
 		}
 
 		const newEntry = new IndexEntry({
+			// OMDb Data
 			title: data.Title,
 			year: data.Year,
 			rated: data.Rated,
-			released: data.Released,
 			runtime: data.Runtime,
 			genre: data.Genre?.split(',').map((g) => g.trim()),
 			director: data.Director,
@@ -36,12 +38,30 @@ const fetchAndSeedIndex = async (title) => {
 			language: data.Language,
 			country: data.Country,
 			poster: data.Poster,
-			imdbID: data.imdbID,
 
-			// Curated fields
-			conflict: 'WWII',
+			// Manual Assignments & Custom Metadata
+			type: 'film',
+			featured: true,
+			seen: true,
+			conflict: 'World War I',
+			conflictSlug: 'wwi',
 			commentary: 'A stunning visual take on trench warfare and the loneliness of duty.',
-			tags: ['trench warfare', 'WWI', 'long take'],
+			tags: ['trench warfare', 'WWI', 'long take', 'British Army'],
+			historicalFidelity: 'symbolic',
+			fidelityNotes:
+				'While not based on a true story, 1917 immerses viewers in the emotional and tactical experience of WWI trench warfare.',
+			basedOnTrueStory: false,
+
+			// External links
+			externalLinks: {
+				imdb: `https://www.imdb.com/title/${data.imdbID}`,
+				wikipedia: 'https://en.wikipedia.org/wiki/1917_(2019_film)',
+				contextLinks: [
+					'https://en.wikipedia.org/wiki/World_War_I',
+					'https://en.wikipedia.org/wiki/Trench_warfare',
+				],
+				trailer: 'https://www.youtube.com/watch?v=YqNYrYUiMfg',
+			},
 		});
 
 		const savedEntry = await newEntry.save();
@@ -53,5 +73,5 @@ const fetchAndSeedIndex = async (title) => {
 	}
 };
 
-// Example seed call
+// Seed a sample film
 fetchAndSeedIndex('1917');
