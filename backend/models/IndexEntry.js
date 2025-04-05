@@ -4,6 +4,7 @@ const indexEntrySchema = new mongoose.Schema(
 	{
 		// Core Metadata
 		title: { type: String, required: true },
+		imdbID: { type: String, unique: true },
 		year: String,
 		rated: String,
 		runtime: String,

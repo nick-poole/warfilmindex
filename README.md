@@ -49,7 +49,7 @@ cd warfilmindex/backend
 npm install
 node server.js
 
-# Frontend setup (when ready)
+# Frontend setup
 cd ../frontend
 npm install
 npm run dev
@@ -58,30 +58,36 @@ npm run dev
 ## Progress Log
 
 **April 4, 2025 **
-- Connected MongoDB Atlas via Mongoose
-- Finalized and implemented film schema (`IndexEntry`)
-- Created `seedIndex.js` script for automated OMDb film import
-- Seeded first full entry into index: *1917 (2019)*
+# Adds imdbID to schema and implement batch seeder with curated metadata
+- [x] Added `imdbID` field to schema for deduplication
+- [x] Built scalable batch seeding script with curated metadata
+- [x] Seeded: The Hurt Locker, The Thin Red Line, Devotion
 
-**April 3, 2025**
+# Seeds first full entry into War Film Index using final schema (1917)
+- [x] Connected MongoDB Atlas via Mongoose
+- [x] Finalized and implemented film schema (`IndexEntry`)
+- [x] Created `seedIndex.js` script for automated OMDb film import
+- [x] Seeded first full entry into index: *1917 (2019)*
+
+**04/03/2025**
 # feat: connected /film route to serve indexed war films via MongoDB
-- Swapped from generic `Movie` model to custom `IndexEntry` schema
-- Created `/film` route to serve curated entries from MongoDB
-- Configured `server.js` to handle new route
-- Seeded database with custom tags and commentary using `seedIndex.js`
-- Connected MongoDB Compass for visual inspection and editing
+- [x] Swapped from generic `Movie` model to custom `IndexEntry` schema
+- [x] Created `/film` route to serve curated entries from MongoDB
+- [x] Configured `server.js` to handle new route
+- [x] Seeded database with custom tags and commentary using `seedIndex.js`
+- [x] Connected MongoDB Compass for visual inspection and editing
 
 # Added fetchAndSaveMovie script to pull OMDb data and insert into MongoDB
-- Created first Mongoose schema (`Movie`) to structure film metadata and custom commentary fields
-- Wrote standalone script to fetch movie data from OMDb and insert into MongoDB Atlas
-- Successfully inserted first film (`1917`) into the database, confirming full backend data flow
+- [x] Created first Mongoose schema (`Movie`) to structure film metadata and custom commentary fields
+- [x] Wrote standalone script to fetch movie data from OMDb and insert into MongoDB Atlas
+- [x] Successfully inserted first film (`1917`) into the database, confirming full backend data flow
 
 
 **04/02/2025**
-- Set up MongoDB Atlas cluster with free-tier hosting
-- Installed Mongoose and connected backend to cloud database
-- Cleaned up deprecated connection options for modern MongoDB driver
-
-- Installed Express and Axios
-- Successfully fetched data from OMDb API using test script
-- Initialized backend project structure
+- [x] Set up MongoDB Atlas cluster
+- [x] Installed Mongoose and connected backend to cloud database
+- [x] Cleaned up deprecated connection options for modern MongoDB driver
+# Setup project org and install Express/Axios
+- [x] Installed Express and Axios
+- [x] Successfully fetched data from OMDb API using test script
+- [x] Initialized backend project structure

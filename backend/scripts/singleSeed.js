@@ -2,7 +2,7 @@ const axios = require('axios');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const IndexEntry = require('./models/IndexEntry');
+const IndexEntry = require('../models/IndexEntry');
 
 // Connect to MongoDB
 mongoose
