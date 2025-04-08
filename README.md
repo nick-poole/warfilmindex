@@ -58,6 +58,7 @@ npm run dev
 ## Progress Log
 
 **April 7, 2025**
+#Initial frontend shell with Mantine and AppShell
 #chore: initialize frontend with Vite and React
 
 **April 4, 2025 **
