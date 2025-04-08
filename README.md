@@ -57,6 +57,9 @@ npm run dev
 ---
 ## Progress Log
 
+**April 7, 2025**
+#chore: initialize frontend with Vite and React
+
 **April 4, 2025 **
 # Adds imdbID to schema and implement batch seeder with curated metadata
 - [x] Added `imdbID` field to schema for deduplication
